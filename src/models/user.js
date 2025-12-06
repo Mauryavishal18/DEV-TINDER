@@ -10,18 +10,26 @@ const userSchema = new mongoose.Schema({
     },
     emailId: {
         type: String,
+        lowercase:true,
         required: true,
-        unique: true
+        unique: true,
+        trim:true,
     },
     password: {
         type: String,
         required: true
     },
     age: {
-        type: Number
+        type: Number,
+        min:18,
     },
     gender: {
-        type: String
+        type: String,
+        validate(value){
+            if(!["male","female","other"].includes(value)){
+                throw new Error("Gender data is not valid");
+            }
+        }
     }
 }, {
     timestamps: true
