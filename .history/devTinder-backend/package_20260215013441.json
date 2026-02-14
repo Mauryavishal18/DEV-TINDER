@@ -1,0 +1,24 @@
+{
+  "name": "devtinder-backend",
+  "version": "1.0.0",
+  "description": "devTinde Backend using Nodejs",
+  "main": "app.js",
+  "scripts": {
+    "start":"node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon app.js"
+  },
+  "author": "Akshad Jaiswal",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.2",
+    "validator": "^13.12.0"
+  }
+}
