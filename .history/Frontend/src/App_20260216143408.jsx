@@ -4,7 +4,7 @@ import Body from "./Body";
 import Login from "./Login";
 import Profile from "./Profile";
 import {Provider} from "react-redux";
-import appStore from "./utils/appStore";
+import appStore
 function App(){
   return (
     <>

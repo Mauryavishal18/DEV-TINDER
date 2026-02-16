@@ -10,11 +10,9 @@ const Login = () => {
         emailId,
         password,
     },
-  {
-    withCredentials:true
-  });}
+  );}
     catch(err){
-        console.error(err);
+        console.error(err)
     }
 };
 

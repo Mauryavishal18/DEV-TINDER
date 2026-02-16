@@ -11,10 +11,10 @@ const Login = () => {
         password,
     },
   {
-    withCredentials:true
+    withCredentials
   });}
     catch(err){
-        console.error(err);
+        console.error(err)
     }
 };
 

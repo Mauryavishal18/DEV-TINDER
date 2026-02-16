@@ -14,7 +14,7 @@ const Login = () => {
     withCredentials:true
   });}
     catch(err){
-        console.error(err);
+        console.error(err)
     }
 };
 

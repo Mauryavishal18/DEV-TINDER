@@ -3,8 +3,8 @@ import NavBar from "./NavBar";
 import Body from "./Body";
 import Login from "./Login";
 import Profile from "./Profile";
-import {Provider} from "react-redux";
-import appStore from "./utils/appStore";
+import {Provider} from "react-redux"
+
 function App(){
   return (
     <>
