@@ -10,7 +10,11 @@ const Login = () => {
     const res = await axios.post("http://localhost:3000/login", {
       emailId: EmailId,
       password: Password,
-    });
+    },
+    {
+      withCredentials:true
+    }
+  );
 
     console.log(res.data);
     alert("Login Successful 🚀");
