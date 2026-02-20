@@ -1,30 +1,37 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUser } from "./utils/userSlice";   // path check kar lena
 import axios from "axios";
+import Feed from  "./Feed";
 
 const Login = () => {
-  const [EmailId, setEmailId] = useState("vishal@test.com");
-  const [Password, setPassword] = useState("Test@1234");
+  const [emailId, setEmailId] = useState("vishal@test.com");
+  const [password, setPassword] = useState("Test@1234");
+
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
-  try {
-    const res = await axios.post("http://localhost:3000/login", {
-      emailId: EmailId,
-      password: Password,
-    },
-    {
-      withCredentials:true
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/login",
+        {
+          emailId: emailId,
+          password: password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log(res.data);
+      dispatch(addUser(res.data));
+      alert("Login Successful 🚀");
+
+    } catch (err) {
+      console.error(err.response?.data);
+      alert("Login Failed ❌");
     }
-  );
-
-    console.log(res.data);
-    alert("Login Successful 🚀");
-
-  } catch (err) {
-    console.error(err.response?.data);
-    alert("Login Failed ❌");
-  }
-};
-
+  };
 
   return (
     <div className="flex justify-center my-10">
@@ -36,7 +43,7 @@ const Login = () => {
             <span className="label-text">Email ID</span>
             <input
               type="email"
-              value={EmailId}
+              value={emailId}
               className="input input-bordered w-full max-w-xs"
               onChange={(e) => setEmailId(e.target.value)}
             />
@@ -46,7 +53,7 @@ const Login = () => {
             <span className="label-text">Password</span>
             <input
               type="password"
-              value={Password}
+              value={password}
               className="input input-bordered w-full max-w-xs"
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -57,7 +64,6 @@ const Login = () => {
               Login
             </button>
           </div>
-
         </div>
       </div>
     </div>
