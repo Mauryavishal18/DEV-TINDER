@@ -1,35 +1,41 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addUser } from "./utils/userSlice";   // path check kar lena
+import { addUser } from "./utils/userSlice";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Feed from  "./Feed";
+
+const BASE_URL = "http://localhost:3000";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("vishal@test.com");
   const [password, setPassword] = useState("Test@1234");
+  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/login",
+        BASE_URL + "/login",
         {
-          emailId: emailId,
-          password: password,
+          emailId,
+          password,
         },
         {
           withCredentials: true,
         }
       );
 
-      console.log(res.data);
-      dispatch(addUser(res.data));
-      alert("Login Successful 🚀");
+      // Backend response example:
+      // { message: "...", user: {...}, token: "..." }
+
+      dispatch(addUser(res.data.user));   // ✅ only user store karo
+
+      navigate("/");  // ✅ redirect to feed/home
 
     } catch (err) {
-      console.error(err.response?.data);
-      alert("Login Failed ❌");
+      setError(err.response?.data?.message || "Invalid credentials");
     }
   };
 
@@ -37,6 +43,7 @@ const Login = () => {
     <div className="flex justify-center my-10">
       <div className="card bg-base-300 w-96 shadow-sm">
         <div className="card-body">
+          
           <h2 className="card-title justify-center">Login</h2>
 
           <label className="form-control w-full max-w-xs my-2">
@@ -59,11 +66,21 @@ const Login = () => {
             />
           </label>
 
-          <div className="card-actions justify-center">
-            <button className="btn btn-primary" onClick={handleLogin}>
+          {error && (
+            <p className="text-red-500 text-center mt-2">
+              {error}
+            </p>
+          )}
+
+          <div className="card-actions justify-center mt-4">
+            <button
+              className="btn btn-primary w-full"
+              onClick={handleLogin}
+            >
               Login
             </button>
           </div>
+
         </div>
       </div>
     </div>
