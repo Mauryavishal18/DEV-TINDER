@@ -1,2 +1,10 @@
+/* src/index.css */
+
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* Optional custom styling */
+body {
+  background: linear-gradient(to bottom right, #0f172a, #111827);
+  color: #e5e7eb;
+}

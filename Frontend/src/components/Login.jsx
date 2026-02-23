@@ -1,10 +1,10 @@
+// src/components/Login.jsx
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
-const BASE_URL = "http://localhost:3000";
+import { BASE_URL } from "../utils/constant";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("vishal@test.com");
@@ -16,72 +16,39 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post(
-        BASE_URL + "/login",
-        {
-          emailId,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await axios.post(`${BASE_URL}/login`, { emailId, password }, { withCredentials: true });
 
-      // Backend response example:
-      // { message: "...", user: {...}, token: "..." }
-
-      dispatch(addUser(res.data.user));   // ✅ only user store karo
-
-      navigate("/");  // ✅ redirect to feed/home
-
+      // backend may return { user: {...}, token: '...' } or user directly
+      const user = res.data.user || res.data;
+      dispatch(addUser(user));
+      setError("");
+      navigate("/");
     } catch (err) {
-      setError(err.response?.data?.message || "Invalid credentials");
+      setError(err.response?.data?.message || "Login failed. Check credentials.");
+      console.error(err);
     }
   };
 
   return (
-    <div className="flex justify-center my-10">
-      <div className="card bg-base-300 w-96 shadow-sm">
-        <div className="card-body">
-          
-          <h2 className="card-title justify-center">Login</h2>
+    <div className="flex justify-center items-start mt-16">
+      <div className="card bg-slate-800 w-96 shadow-lg p-6 text-white">
+        <h2 className="text-center text-2xl font-semibold mb-4">Login</h2>
 
-          <label className="form-control w-full max-w-xs my-2">
-            <span className="label-text">Email ID</span>
-            <input
-              type="email"
-              value={emailId}
-              className="input input-bordered w-full max-w-xs"
-              onChange={(e) => setEmailId(e.target.value)}
-            />
-          </label>
+        <label className="block mb-3">
+          <span className="text-sm text-gray-300">Email</span>
+          <input type="email" value={emailId} onChange={(e) => setEmailId(e.target.value)} className="input input-bordered w-full mt-1 bg-slate-900 text-white" />
+        </label>
 
-          <label className="form-control w-full max-w-xs my-2">
-            <span className="label-text">Password</span>
-            <input
-              type="password"
-              value={password}
-              className="input input-bordered w-full max-w-xs"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
+        <label className="block mb-3">
+          <span className="text-sm text-gray-300">Password</span>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input input-bordered w-full mt-1 bg-slate-900 text-white" />
+        </label>
 
-          {error && (
-            <p className="text-red-500 text-center mt-2">
-              {error}
-            </p>
-          )}
+        {error && <p className="text-red-400 mb-2">{error}</p>}
 
-          <div className="card-actions justify-center mt-4">
-            <button
-              className="btn btn-primary w-full"
-              onClick={handleLogin}
-            >
-              Login
-            </button>
-          </div>
-
-        </div>
+        <button onClick={handleLogin} className="btn w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+          Login
+        </button>
       </div>
     </div>
   );

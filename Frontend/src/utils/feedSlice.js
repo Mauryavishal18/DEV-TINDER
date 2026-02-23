@@ -1,8 +1,9 @@
+// src/utils/feedSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const feedSlice = createSlice({
   name: "feed",
-  initialState: [],   // ✅ feed array hona chahiye
+  initialState: [],
   reducers: {
     addFeed: (state, action) => {
       return action.payload;
@@ -14,5 +15,4 @@ const feedSlice = createSlice({
 });
 
 export const { addFeed, removeFeed } = feedSlice.actions;
-
 export default feedSlice.reducer;
