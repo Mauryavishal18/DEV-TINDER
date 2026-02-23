@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { removeUser } from "./utils/userSlice";
+import { removeUser } from "../utils/userSlice";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:3000";
