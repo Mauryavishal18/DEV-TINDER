@@ -10,15 +10,25 @@ profileRouter.get("/profile/view", userAuth, async (req, res) => {
 /* ---------- EDIT PROFILE ---------- */
 profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
   try {
-    const ALLOWED_UPDATES = ["photoUrl", "about", "gender", "age", "skills"];
+    const ALLOWED_UPDATES = [
+      "firstName",
+      "lastName",
+      "photoUrl",
+      "about",
+      "gender",
+      "age",
+      "skills",
+    ];
 
-    const isAllowed = Object.keys(req.body).every(key =>
+    const isAllowed = Object.keys(req.body).every((key) =>
       ALLOWED_UPDATES.includes(key)
     );
 
-    if (!isAllowed) throw new Error("Invalid Edit request");
+    if (!isAllowed) {
+      throw new Error("Invalid Edit request");
+    }
 
-    Object.keys(req.body).forEach(key => {
+    Object.keys(req.body).forEach((key) => {
       req.user[key] = req.body[key];
     });
 
@@ -26,10 +36,13 @@ profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
 
     res.json({
       message: `${req.user.firstName}, your profile updated successfully`,
-      data: req.user,
+      user: req.user, // IMPORTANT: must be user
     });
+
   } catch (err) {
-    res.status(400).send("ERROR: " + err.message);
+    res.status(400).json({
+      message: err.message,
+    });
   }
 });
 

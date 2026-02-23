@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors=require("cors");
 require("dotenv").config();
+const feedRouter = require("./routes/Feed");
 
 const connectDB = require("./config/database");
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
+app.use("/", feedRouter);
 
 /* ---------- DB + SERVER ---------- */
 connectDB()
