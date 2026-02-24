@@ -66,6 +66,16 @@ const userSchema = new mongoose.Schema(
     skills: {
       type: [String],
     },
+
+skills: [String],
+github: String,
+portfolio: String,
+role: {
+  type: String,
+  enum: ["developer", "recruiter"],
+  default: "developer",
+},
+
   },
   { timestamps: true }
 );

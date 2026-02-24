@@ -1,33 +1,32 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const cors=require("cors");
+const cors = require("cors");
 require("dotenv").config();
-const feedRouter = require("./routes/Feed");
 
 const connectDB = require("./config/database");
 
-// Import Routers
 const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
+const feedRouter = require("./routes/Feed");
+const matchRouter = require("./routes/match");
 
 const app = express();
 
-/* ---------- GLOBAL MIDDLEWARE ---------- */
 app.use(cors({
-  origin:"http://localhost:5173",
-  credentials:true,
+  origin: "http://localhost:5173",
+  credentials: true,
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 
-/* ---------- ROUTES ---------- */
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", feedRouter);
+app.use("/", matchRouter);
 
-/* ---------- DB + SERVER ---------- */
 connectDB()
   .then(() => {
     app.listen(3000, () => {
@@ -35,8 +34,5 @@ connectDB()
     });
   })
   .catch((err) => {
-    console.error(" DB connection failed", err);
+    console.error("DB connection failed", err);
   });
-
-
-  
