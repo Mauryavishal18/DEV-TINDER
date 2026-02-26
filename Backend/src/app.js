@@ -10,6 +10,9 @@ const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 const feedRouter = require("./routes/Feed");
 const matchRouter = require("./routes/match");
+const connectionRouter = require("./routes/connection");
+
+
 
 const app = express();
 
@@ -26,6 +29,7 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", feedRouter);
 app.use("/", matchRouter);
+app.use("/", connectionRouter);
 
 connectDB()
   .then(() => {
