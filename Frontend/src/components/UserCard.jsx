@@ -3,42 +3,45 @@ import React from "react";
 const UserCard = ({ user, onIgnore, onInterested }) => {
   if (!user) return null;
 
-  const { firstName, lastName, photoUrl, age, gender, about } = user;
-
   return (
-    <div className="w-96 bg-slate-800 rounded-2xl p-6 text-white shadow-xl">
-      <div className="flex justify-center">
-        <img
-          src={photoUrl || "https://i.pravatar.cc/300"}
-          alt="profile"
-          className="w-40 h-40 rounded-full object-cover"
-        />
-      </div>
+    <div className="flex justify-center items-center h-[80vh]">
+      <div className="w-80 bg-[#1f2937] rounded-2xl shadow-2xl p-6 text-white text-center">
 
-      <h2 className="text-2xl font-bold text-center mt-4">
-        {firstName} {lastName}
-      </h2>
+        {/* Profile Image */}
+        <div className="flex justify-center">
+          <img
+            src={user.photoUrl || "https://i.pravatar.cc/300"}
+            alt="profile"
+            className="w-40 h-40 rounded-full object-cover"
+          />
+        </div>
 
-      <p className="text-center text-gray-400">
-        {age} {gender && `, ${gender}`}
-      </p>
+        {/* Name */}
+        <h2 className="text-xl font-bold mt-4">
+          {user.firstName} {user.lastName}
+        </h2>
 
-      <p className="text-center mt-3">{about}</p>
+        {/* About */}
+        <p className="text-gray-400 text-sm mt-2">
+          {user.about || "This is a default about of the user"}
+        </p>
 
-      <div className="flex justify-center gap-6 mt-6">
-        <button
-          onClick={onIgnore}
-          className="px-6 py-2 bg-gray-600 rounded-lg hover:bg-gray-500"
-        >
-          Ignore
-        </button>
+        {/* Buttons */}
+        <div className="flex justify-center gap-4 mt-6">
+          <button
+            onClick={onIgnore}
+            className="px-4 py-2 bg-indigo-600 rounded-lg hover:bg-indigo-500 transition"
+          >
+            Ignore
+          </button>
 
-        <button
-          onClick={onInterested}
-          className="px-6 py-2 bg-pink-600 rounded-lg hover:bg-pink-500"
-        >
-          Interested
-        </button>
+          <button
+            onClick={onInterested}
+            className="px-4 py-2 bg-pink-600 rounded-lg hover:bg-pink-500 transition"
+          >
+            Interested
+          </button>
+        </div>
       </div>
     </div>
   );

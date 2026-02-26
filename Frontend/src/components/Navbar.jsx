@@ -5,6 +5,8 @@ import { removeUser } from "../utils/userSlice";
 import axios from "axios";
 import { BASE_URL } from "../utils/constant";
 
+
+
 const Navbar = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
@@ -49,6 +51,7 @@ const Navbar = () => {
                   <button onClick={() => navigate("/settings")}>Settings</button>
                 </li>
                 <li>
+                  <Link to="/connections">Connections</Link>
                   <button onClick={handleLogout}>Logout</button>
                 </li>
               </ul>
