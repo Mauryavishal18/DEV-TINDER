@@ -21,10 +21,10 @@ npm install
 ```
 Create `.env` in backend folder:
 ```
-MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/devtinder
-JWT_SECRET=Vishal_Maurya_DevTinder_v2_2024_Secret
-PORT=3000
-FRONTEND_URL=http://localhost:5173
+MONGO_URI=MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/devtinder
+JWT_SECRET=""
+PORT=****
+FRONTEND_URL=http://localhost:****
 ```
 ```bash
 npm run dev
