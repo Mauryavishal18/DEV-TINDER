@@ -1,0 +1,26 @@
+.history
+.env
+node_modules
+
+
+# Dependencies
+node_modules/
+
+# Environment files - NEVER commit
+.env
+.env.local
+.env.production
+
+# Uploads
+backend/uploads/*.jpg
+backend/uploads/*.png
+backend/uploads/*.jpeg
+backend/uploads/*.webp
+
+# Build
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
