@@ -112,12 +112,12 @@ export default function SignupPage() {
                     <label style={{ fontSize:"11px", color:"var(--text3)", textTransform:"uppercase", letterSpacing:"1.5px", fontFamily:"var(--mono)", display:"block", marginBottom:"6px" }}>First Name *</label>
                     <div style={{ position:"relative" }}>
                       <User size={13} style={{ position:"absolute", left:"12px", top:"50%", transform:"translateY(-50%)", color:"var(--green)" }}/>
-                      <input value={form.firstName} onChange={upd("firstName")} placeholder="Vishal" style={{ ...inputStyle, paddingLeft:"34px" }} autoFocus/>
+                      <input value={form.firstName} onChange={upd("firstName")} placeholder="First Name" style={{ ...inputStyle, paddingLeft:"34px" }} autoFocus/>
                     </div>
                   </div>
                   <div>
                     <label style={{ fontSize:"11px", color:"var(--text3)", textTransform:"uppercase", letterSpacing:"1.5px", fontFamily:"var(--mono)", display:"block", marginBottom:"6px" }}>Last Name</label>
-                    <input value={form.lastName} onChange={upd("lastName")} placeholder="Maurya" style={inputStyle}/>
+                    <input value={form.lastName} onChange={upd("lastName")} placeholder="Last Name" style={inputStyle}/>
                   </div>
                 </div>
 
@@ -133,7 +133,7 @@ export default function SignupPage() {
                   <label style={{ fontSize:"11px", color:"var(--text3)", textTransform:"uppercase", letterSpacing:"1.5px", fontFamily:"var(--mono)", display:"block", marginBottom:"6px" }}>Mobile (Optional)</label>
                   <div style={{ position:"relative" }}>
                     <Phone size={13} style={{ position:"absolute", left:"12px", top:"50%", transform:"translateY(-50%)", color:"var(--green)" }}/>
-                    <input type="tel" value={form.mobile} onChange={upd("mobile")} placeholder="+91 9876543210" style={{ ...inputStyle, paddingLeft:"34px" }}/>
+                    <input type="tel" value={form.mobile} onChange={upd("mobile")} placeholder="Mobile Number" style={{ ...inputStyle, paddingLeft:"34px" }}/>
                   </div>
                 </div>
 
