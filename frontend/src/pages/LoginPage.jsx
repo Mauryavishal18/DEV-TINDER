@@ -98,7 +98,7 @@ export default function LoginPage() {
         </div>
       </motion.div>
       <p style={{ fontSize:"11px", color:"var(--text3)", marginTop:"20px", fontFamily:"var(--mono)" }}>
-        © 2024 DevTinder · Built by <a href="https://github.com/Mauryavishal18" target="_blank" rel="noreferrer" style={{ color:"var(--green)", textDecoration:"none" }}>Vishal Maurya</a>
+        © 2026 DevTinder · Built by <a href="https://github.com/Mauryavishal18" target="_blank" rel="noreferrer" style={{ color:"var(--green)", textDecoration:"none" }}>Vishal Maurya</a>
       </p>
       <style>{`@keyframes spin{to{transform:rotate(360deg)}} input::-ms-reveal,input::-ms-clear{display:none} input[type=password]::-webkit-credentials-auto-fill-button{display:none}`}</style>
     </div>
